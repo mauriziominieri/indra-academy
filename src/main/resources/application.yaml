@@ -1,4 +1,10 @@
+server:
+  port: 8088
+  servlet:
+    context-path: /Academy
 spring:
+  jackson:
+    time-zone: Europe/Rome
   h2:
     console.enabled: true
     settings.trace: false

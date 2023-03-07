@@ -1,11 +1,11 @@
 package com.academy.dto;
 
-import com.academy.model.Product;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * Created by IntelliJ IDEA.
@@ -18,15 +18,17 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class ProductDto {
+public class LogDto {
 
     private Long id;
 
-    private String name;
+    private Date logDate;
+
+    private String module;
+
+    private String action;
 
     private String description;
 
-    private BigDecimal price;
-
-    private Product.Genre genre;
+    private byte[] detail;
 }

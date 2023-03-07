@@ -35,6 +35,8 @@ public class SwaggerConfig {
         return new ApiInfoBuilder()
                 .title("API Documentation")
                 .description("API documentation for Academy application")
+                .license("Apache 2.0")
+                .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
                 .version("1.0")
                 .build();
     }

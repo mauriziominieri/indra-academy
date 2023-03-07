@@ -4,6 +4,8 @@ import com.academy.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  *
@@ -14,4 +16,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
+    List<User> findBySurnameIgnoreCase(String surname);
+    List<User> findByYearsGreaterThanOrderByYearsDesc(Long anni);
 }

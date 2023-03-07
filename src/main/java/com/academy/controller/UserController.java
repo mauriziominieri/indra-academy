@@ -43,6 +43,18 @@ public class UserController {
         return ResponseEntity.ok(userService.getById(id));
     }
 
+    @ApiOperation("Restituisce gli utenti tramite cognome")
+    @GetMapping(value = "/surname/{surname}")
+    public ResponseEntity<List<UserDto>> getBySurname(@PathVariable String surname) {
+        return ResponseEntity.ok(userService.getBySurname(surname));
+    }
+
+    @ApiOperation("Restituisce gli utenti maggiorenni")
+    @GetMapping(value = "/maggiorenni")
+    public ResponseEntity<List<UserDto>> getMaggiorenni() {
+        return ResponseEntity.ok(userService.getMaggiorenni());
+    }
+
     @ApiOperation("Aggiunge un nuovo utente")
     @PostMapping
     public ResponseEntity<UserDto> add(@RequestBody UserDto userDto) {

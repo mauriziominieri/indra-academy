@@ -1,11 +1,13 @@
 package com.academy.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -30,11 +32,23 @@ public class User {
     @Column(name = "ID")
     private Long id;
 
+    @NotNull(message = "Nome obbligatorio")
     @Column(name = "NAME")
     private String name;
 
+    @NotNull(message = "Cognome obbligatorio")
+    @Column(name = "SURNAME")
+    private String surname;
+
+    @NotNull(message = "Email obbligatoria")
     @Column(name = "EMAIL")
     private String email;
+
+    @NotNull(message = "Anni obbligatori")
+    @Min(value = 1, message = "Anni minimi 1")
+    @Max(value = 150, message = "Anni massimi 150")
+    @Column(name = "YEARS")
+    private Long years;
 
 /*
 L'eccezione "org.hibernate.LazyInitializationException: failed to lazily initialize a collection, could not initialize proxy - no Session" si verifica quando si tenta di accedere a una collezione lazily loaded (cioè caricata in modo differito) e la sessione Hibernate è stata chiusa o non è più disponibile.
@@ -49,6 +63,5 @@ Utilizzare il metodo fetch = FetchType.EAGER nella specifica @ManyToMany per car
     @JoinTable(name = "orders",
         joinColumns = { @JoinColumn(name = "user_id") },
         inverseJoinColumns = { @JoinColumn(name = "product_id") })
-    @JsonIgnore
     private List<Product> ordini;   // usare Set se non si vogliono duplicati (se ogni user può ordinare un solo prodotto)
 }
